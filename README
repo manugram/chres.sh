@@ -1,0 +1,94 @@
+Archivo README para chres versión 0.2.1
+
+
+    Guión de shell que nos permite cambiar el modo de video (o resolución) del entorno gráfico en nuestro escritorio GNU/Linux de una forma simple, ya que no usaremos de manera directa las instrucciones "cvt" y "xrandr", claro que siempre conviene aprender a usarlas igualmente.
+
+    Dicho script va sin garantía alguna, expresa o implícita, sólo con la esperanza de que sea útil. También tomar en cuenta que es un trabajo en progreso, por lo que no es un producto terminado, aunque ya funcional. Es perfectible y ampliable, dentro de los límites de Bash (y los míos). Dicho lo anterior, se me ocurren varios aspectos a mejorar y características que agregar, a saber:
+   
+
+    Soporte multi-monitor.
+    Soporte multi-frecuencia.
+    Controlar valores fuera de rango.
+    Agregar una rutina temporizada para revertir cambios.
+    etc.
+
+   
+- MUY IMPORTANTE -
+
+    Tener especial cuidado al momento de escribir los valores de los argumentos, ya que no hay ninguna rutina que supervise o restrinja los valores fuera de rango. Realmente no sé cuales serían las consecuencias de una frecuencia de actualización de 6000 Hz, o de una resolución de 134000x20000 pixeles!! Así que escriban concienzudamente cada carácter antes de ejecutar la orden...
+
+- MUY IMPORTANTE -
+
+    La forma de uso espero les sea sencilla de comprender, llamé a la herramienta "chres" (de CHange RESolution), siguiendo la tónica de "chmod", "chown", "chgrp", etc. por lo que su invocación sería:
+   
+
+    chres [OPCIONES] [ARGUMENTOS]
+
+
+   
+Para saber las opciones disponibles, tecleamos:
+   
+
+    chres -h
+
+
+   
+Bastante simple no?? Para cambiar la resolución directamente, escribimos:
+
+       
+    chres -s HORIZONTALxVERTICAL
+
+   
+    Donde el banderín "-s" nos "seteará" la resolución que deseamos. Todo esto tomando en cuenta que tenemos sólo un monitor, si bien he programado una forma de decirle a que monitor aplicar la nueva configuración, aún no está del todo probada y refinada (más que todo porque tengo una sola pantalla), la forma de hacerlo es colocando el carácter ":" al final, seguido del nombre de la pantalla en xrandr, todo pegado sin espacio, de la siguiente forma:
+   
+
+    chres -s HORIZONTALxVERTICAL:PANTALLA
+
+
+   
+    Si no sabemos el nombre de la pantalla, podemos pasarle la opción "-d" para que chres nos muestre la salida de xrandr, a saber:
+   
+
+    chres -d
+
+
+   
+    Para saber el modo de video actual, pasamos la opción "-c" como sigue:
+   
+
+    chres -c
+
+
+   
+    O si queremos ver la salida de consola de "xrandr", lo hacemos con la opción "-x", como sigue:
+   
+
+    chres -x
+
+
+   
+    Para activar un modo de video con un valor de actualización vertical especifico (vertical refresh), lo hacemos poniendo el carácter de "@" sin espacios, como sigue:
+   
+
+    chres -s HORIZONTALxVERTICAL@Hz
+
+    Donde Hz, corresponde a un valor numérico que expresa la frecuencia de actualización vertical en hertzios. Ejemplo:
+
+    chres -s 1024x768@60
+
+   
+    El valor por defecto es de 60 Hz, recomiendo no cambiarlo, a menos que sepan lo que están haciendo.
+
+
+- MUY IMPORTANTE -
+
+    Tener especial cuidado al momento de escribir los valores de los argumentos, ya que no hay ninguna rutina que supervise o restrinja los valores fuera de rango. Realmente no sé cuales serían las consecuencias de una frecuencia de actualización de 6000 Hz, o de una resolución de 134000x20000 pixeles!! Así que escriban concienzudamente cada carácter antes de ejecutar la orden...
+
+- MUY IMPORTANTE -
+
+
+    Para quienes deseen leer el código, espero puedan entenderlo, ya que no es un trabajo profesional en absoluto!! Lo escribí en inglés para su uso internacional, sin embargo, no está muy bien comentado aún, mi pobre inglés lo compensé con google translator, aunque algún que otro comentario habrá quedado en mi inglés limitado.
+
+    Quienes quieran aportar para mejorar la herramienta, pueden hacerlo enviando sus propuestas a mi correo, con el asunto CHRES; comentarios, criticas constructivas y donaciones son bienvenidas ;) ...
+
+
